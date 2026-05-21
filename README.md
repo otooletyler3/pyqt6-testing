@@ -5,6 +5,8 @@ A collection of intuitive PyQt6 application to learn GUI development.
 ## Projects
 
 - **counter/** - Simple increment/decrement app
+- **text-editor/** - Text editor with save/load functionality
+- **settings/** - Settings app with default and save functions
 
 ## Setup
 

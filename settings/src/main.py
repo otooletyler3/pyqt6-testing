@@ -63,7 +63,7 @@ class Settings(QWidget):
         font_label = QLabel('Font Size:')
         self.font_labels = QLabel('_')
         font_label.setFixedHeight(24)
-        self.font_slider = QSlider()
+        self.font_slider = QSlider(valueChanged=self.update_font_value)
         self.font_slider.setOrientation(Qt.Orientation.Horizontal)
         self.font_slider.setMinimum(8)
         self.font_slider.setMaximum(24)
@@ -94,6 +94,9 @@ class Settings(QWidget):
             self.font_slider.setValue(self.settings_cnfg["font_size"])
             self.font_labels.setText(f'{self.settings_cnfg["font_size"]}')
 
+    def update_font_value(self):
+        self.font_labels.setText(str(self.font_slider.value()))
+
     def apply(self):
         with open('settings.json', 'w') as f:
             self.settings_cnfg["name"] = self.name_field.toPlainText()
@@ -107,6 +110,7 @@ class Settings(QWidget):
             self.settings_cnfg = json.load(f)
             self.name_field.setText(self.settings_cnfg["name"])
             self.theme_dropdown.setCurrentText(self.settings_cnfg["theme"].capitalize())
+            self.font_slider.setValue(self.settings_cnfg["font"])
 
 
 if __name__ == "__main__":
